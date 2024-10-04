@@ -1,0 +1,106 @@
+service: quiztopia-api
+frameworkVersion: "3"
+
+provider:
+  name: aws
+  runtime: nodejs18.x
+  region: eu-north-1
+  iam:
+    role: arn:aws:iam::565393056445:role/quiztopia-api
+
+  environment:
+    JWT_SECRET: secret_password
+
+plugins:
+  - serverless-webpack
+
+package:
+  individually: true
+
+functions:
+  createUser:
+    handler: functions/createUser.handler
+    events:
+      - httpApi:
+          path: /auth/register
+          method: POST
+
+  loginUser:
+    handler: functions/loginUser.handler
+    events:
+      - httpApi:
+          path: /auth/login
+          method: POST
+
+  createQuiz:
+    handler: functions/createQuiz.handler
+    events:
+      - httpApi:
+          path: /quiz
+          method: POST
+
+  addQuestionToQuiz:
+    handler: functions/addQuestionToQuiz.handler
+    events:
+      - httpApi:
+          path: /quiz/{id}/question
+          method: POST
+
+  getAllQuizzes:
+    handler: functions/getAllQuizzes.handler
+    events:
+      - httpApi:
+          path: /quizzes
+          method: GET
+
+  getQuizQuestions:
+    handler: functions/getQuizQuestions.handler
+    events:
+      - httpApi:
+          path: /quiz/{id}/questions
+          method: GET
+
+  deleteQuiz:
+    handler: functions/deleteQuiz.handler
+    events:
+      - httpApi:
+          path: /quiz/{id}
+          method: DELETE
+
+resources:
+  Resources:
+    UsersTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: users
+        AttributeDefinitions:
+          - AttributeName: email
+            AttributeType: S
+        KeySchema:
+          - AttributeName: email
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+
+    QuizzesTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: quizzes
+        AttributeDefinitions:
+          - AttributeName: quizId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: quizId
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST
+
+    QuestionsTable:
+      Type: AWS::DynamoDB::Table
+      Properties:
+        TableName: questions
+        AttributeDefinitions:
+          - AttributeName: questionId
+            AttributeType: S
+        KeySchema:
+          - AttributeName: questionId
+            KeyType: HASH
+        BillingMode: PAY_PER_REQUEST

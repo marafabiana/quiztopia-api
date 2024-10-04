@@ -1,0 +1,267 @@
+{
+	"info": {
+		"_postman_id": "77a8b919-2380-49d9-bd1d-0b8f504b4fb0",
+		"name": "quiztopia-api",
+		"schema": "https://schema.getpostman.com/json/collection/v2.1.0/collection.json",
+		"_exporter_id": "34129895"
+	},
+	"item": [
+		{
+			"name": "Create a user",
+			"request": {
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"name\": \"John Doe\",\n    \"email\": \"john@doe.com\",\n    \"password\": \"test123\"\n    \n    \n    \n   \n   \n    \n    \n \n   \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://otoh5vl857.execute-api.eu-north-1.amazonaws.com/auth/register",
+					"protocol": "https",
+					"host": [
+						"otoh5vl857",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"auth",
+						"register"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Login a user",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"email\": \"john@doe.com\",\n    \"password\": \"test123\"\n    \n    \n    \n   \n    \n    \n    \n    \n    \n    \n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://otoh5vl857.execute-api.eu-north-1.amazonaws.com/auth/login",
+					"protocol": "https",
+					"host": [
+						"otoh5vl857",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"auth",
+						"login"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Create a quiz",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZG9lLmNvbSIsIm5hbWUiOiJKb2huIERvZSIsImlhdCI6MTcyODA3MDg3NSwiZXhwIjoxNzI4MDkyNDc1fQ.R0GICpmCVJ91oG70KGT4_5Cqmh6NeWYanEr1F3m8FMU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"title\": \"Culture and Attractions in Gothenburg\"\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://otoh5vl857.execute-api.eu-north-1.amazonaws.com/quiz",
+					"protocol": "https",
+					"host": [
+						"otoh5vl857",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"quiz"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Add question to quiz",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZG9lLmNvbSIsIm5hbWUiOiJKb2huIERvZSIsImlhdCI6MTcyODA3MDg3NSwiZXhwIjoxNzI4MDkyNDc1fQ.R0GICpmCVJ91oG70KGT4_5Cqmh6NeWYanEr1F3m8FMU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "POST",
+				"header": [],
+				"body": {
+					"mode": "raw",
+					"raw": "{\n    \"question\": \"Which Gothenburg museum is known for its extensive collection of Nordic art?\",\n    \"answer\": \"Gothenburg Museum of Art\",\n    \"coordinates\":{\n        \"latitude\": 57.6965,\n        \"longitude\": 11.9805\n    }\n  \n    \n    \n  \n  \n   \n   \n\n}",
+					"options": {
+						"raw": {
+							"language": "json"
+						}
+					}
+				},
+				"url": {
+					"raw": "https://otoh5vl857.execute-api.eu-north-1.amazonaws.com/quiz/b9dbe37c-41d2-4b06-8c77-fe321f37de38/question",
+					"protocol": "https",
+					"host": [
+						"otoh5vl857",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"quiz",
+						"b9dbe37c-41d2-4b06-8c77-fe321f37de38",
+						"question"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get all quizzes",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZG9lLmNvbSIsIm5hbWUiOiJKb2huIERvZSIsImlhdCI6MTcyODA3MDg3NSwiZXhwIjoxNzI4MDkyNDc1fQ.R0GICpmCVJ91oG70KGT4_5Cqmh6NeWYanEr1F3m8FMU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://otoh5vl857.execute-api.eu-north-1.amazonaws.com/quizzes",
+					"protocol": "https",
+					"host": [
+						"otoh5vl857",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"quizzes"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Get quiz questions",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImpvaG5AZG9lLmNvbSIsIm5hbWUiOiJKb2huIERvZSIsImlhdCI6MTcyODA3MDg3NSwiZXhwIjoxNzI4MDkyNDc1fQ.R0GICpmCVJ91oG70KGT4_5Cqmh6NeWYanEr1F3m8FMU",
+							"type": "string"
+						}
+					]
+				},
+				"method": "GET",
+				"header": [],
+				"url": {
+					"raw": "https://otoh5vl857.execute-api.eu-north-1.amazonaws.com/quiz/359d09af-03f8-4541-a7f5-96718e424c64/questions",
+					"protocol": "https",
+					"host": [
+						"otoh5vl857",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"quiz",
+						"359d09af-03f8-4541-a7f5-96718e424c64",
+						"questions"
+					]
+				}
+			},
+			"response": []
+		},
+		{
+			"name": "Delete a quiz",
+			"request": {
+				"auth": {
+					"type": "bearer",
+					"bearer": [
+						{
+							"key": "token",
+							"value": "eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJlbWFpbCI6ImphbmVAZG9lLmNvbSIsIm5hbWUiOiJKYW5lIERvZSIsImlhdCI6MTcyODA2ODgyNywiZXhwIjoxNzI4MDkwNDI3fQ.LFesPwZCMTCZuHjdfE5TgI3BBDz2nIA4CMpFZOWbITA",
+							"type": "string"
+						}
+					]
+				},
+				"method": "DELETE",
+				"header": [],
+				"url": {
+					"raw": "https://otoh5vl857.execute-api.eu-north-1.amazonaws.com/quiz/d9ee7422-e4e7-4acd-a445-76dba09886c2",
+					"protocol": "https",
+					"host": [
+						"otoh5vl857",
+						"execute-api",
+						"eu-north-1",
+						"amazonaws",
+						"com"
+					],
+					"path": [
+						"quiz",
+						"d9ee7422-e4e7-4acd-a445-76dba09886c2"
+					]
+				}
+			},
+			"response": []
+		}
+	]
+}
