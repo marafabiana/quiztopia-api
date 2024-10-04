@@ -75,7 +75,7 @@ Request Body Example:
 **Description**: Retrieves all questions for a specific quiz based on the provided quiz ID. Only logged-in users can view the questions.
 
 ## 7. Delete a quiz
-#### Method: DEL
+#### Method: DELETE
 **URL**: https://otoh5vl857.execute-api.eu-north-1.amazonaws.com/quiz/{id}
 
 **Description**: Allows a logged-in user to delete a quiz they created. Only the quiz owner has permission to delete it, ensuring that quizzes cannot be deleted by unauthorized users.
